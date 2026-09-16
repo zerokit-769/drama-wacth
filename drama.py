@@ -230,7 +230,7 @@ def print_main_banner():
     print(f"{C.MAGENTA}╭{border}╮{C.RESET}")
     print(f"{C.MAGENTA}│{C.BOLD}{C.CYAN}{'🎬 DRAMA WATCH AUTOMATION v2.0':^{w}}{C.MAGENTA}│{C.RESET}")
     print(f"{C.MAGENTA}│{C.WHITE}{'⚡ Multi-Worker Independent Batch':^{w}}{C.MAGENTA}│{C.RESET}")
-    print(f"{C.MAGENTA}│{C.BLUE}{'🔥 SYNDICATEBOT NET - TERMUX EDITION':^{w}}{C.MAGENTA}│{C.RESET}")
+    print(f"{C.MAGENTA}│{C.BLUE}{'🔥 ZeinthHub Project - Reward Alchemist':^{w}}{C.MAGENTA}│{C.RESET}")
     print(f"{C.MAGENTA}╰{border}╯{C.RESET}\n")
 
 
@@ -238,7 +238,7 @@ async def run_sync_animation(uri, ref_id):
     clear_screen()
     w = get_term_width()
     print(f"{C.CYAN}{'═' * w}{C.RESET}")
-    print(f"{C.BOLD}{C.WHITE}   ⚡ SYNCHRONIZING REFERRAL ENGINE ⚡{C.RESET}")
+    print(f"{C.BOLD}{C.WHITE}   ⚡ REFERRAL ENGINE ⚡{C.RESET}")
     print(f"{C.CYAN}{'═' * w}{C.RESET}\n")
 
     sync_steps = [
