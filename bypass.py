@@ -11,7 +11,7 @@ import aiohttp
 CAPSOLVER_API_KEY = "CAP-37AD8C0C6B1651314316A8649DC8C0CCEB0280F26617F63617D5E34C2246BFFE"
 TARGET_WEBSITE_URL = "https://drama.center"
 # Sitekey Turnstile drama.center (pastikan diisi jika berubah, ambil dari halaman web target)
-TURNSTILE_SITEKEY = "0x4AAAAAAE5Imx2BMLN5ABSD." 
+TURNSTILE_SITEKEY = "0x4AAAAAAE5Imx2BMLN5ABSD" 
 
 TOKEN_FILE = "token.json"
 BNB_FILE = "bnb.json"
