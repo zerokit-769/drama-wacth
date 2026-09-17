@@ -14,8 +14,8 @@ TOKEN_FILE = "token.json"
 BATCH_SIZE = 10
 COOLDOWN_SECONDS = 90
 
-USER_REFERRAL_URI = "https://drama.center/?ref=2FV8J4"
-USER_REFERRAL_ID = "2FV8J4"
+USER_REFERRAL_URI = "https://drama.center/?ref=3JY4SV"
+USER_REFERRAL_ID = "3JY4SV"
 
 
 class C:
@@ -218,7 +218,7 @@ def print_prompt_banner():
 
     print(f"{C.CYAN}╭{border}╮{C.RESET}")
     print(f"{C.CYAN}│{C.BOLD}{C.WHITE}{'⚙️ SYSTEM INITIALIZATION & CONFIG':^{w}}{C.CYAN}│{C.RESET}")
-    print(f"{C.CYAN}│{C.YELLOW}{'SyndicateBot Network Setup':^{w}}{C.CYAN}│{C.RESET}")
+    print(f"{C.CYAN}│{C.YELLOW}{'ZeinthHub Network Setup':^{w}}{C.CYAN}│{C.RESET}")
     print(f"{C.CYAN}╰{border}╯{C.RESET}\n")
 
 
@@ -228,9 +228,9 @@ def print_main_banner():
     border = "─" * w
 
     print(f"{C.MAGENTA}╭{border}╮{C.RESET}")
-    print(f"{C.MAGENTA}│{C.BOLD}{C.CYAN}{'🎬 DRAMA WATCH AUTOMATION v2.0':^{w}}{C.MAGENTA}│{C.RESET}")
+    print(f"{C.MAGENTA}│{C.BOLD}{C.CYAN}{'🎬 DRAMA WATCH AUTOMATION v1.0':^{w}}{C.MAGENTA}│{C.RESET}")
     print(f"{C.MAGENTA}│{C.WHITE}{'⚡ Multi-Worker Independent Batch':^{w}}{C.MAGENTA}│{C.RESET}")
-    print(f"{C.MAGENTA}│{C.BLUE}{'🔥 SYNDICATEBOT NET - TERMUX EDITION':^{w}}{C.MAGENTA}│{C.RESET}")
+    print(f"{C.MAGENTA}│{C.BLUE}{'🔥 ZeinthHub Project - Points Alchemist':^{w}}{C.MAGENTA}│{C.RESET}")
     print(f"{C.MAGENTA}╰{border}╯{C.RESET}\n")
 
 
@@ -280,7 +280,7 @@ async def get_user_referral():  # 👈 Added async
     user_input = input(f"{C.CYAN}👉 {C.RESET}").strip()
 
     if not user_input:
-        user_input = "https://drama.center/?ref=2FV8J4"
+        user_input = "https://drama.center/?ref=3JY4SV"
 
     USER_REFERRAL_URI = user_input
 
