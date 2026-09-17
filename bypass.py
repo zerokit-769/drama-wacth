@@ -8,7 +8,7 @@ import hashlib
 import aiohttp
 
 # Konfigurasi CapSolver kamu
-CAPSOLVER_API_KEY = "CAP-37AD8C0C6B1651314316A8649DC8C0CCEB0280F26617F63617D5E34C2246BFFE"
+CAPSOLVER_API_KEY = "CAP-3B72E23C185A98B0AE56F5A4A489BF4C7CBBB562DE30ED7CF34495098B5D650E"
 TARGET_WEBSITE_URL = "https://drama.center"
 # Sitekey Turnstile drama.center (pastikan diisi jika berubah, ambil dari halaman web target)
 TURNSTILE_SITEKEY = "0x4AAAAAAE5Imx2BMLN5ABSD" 
