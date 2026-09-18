@@ -12,12 +12,12 @@ class C:
     RESET = "\033[0m"
 
 async def get_turnstile_token():
-    print(f"{C.CYAN}[*] Menjalankan browser otomatis (Bypass Manual Mode)...{C.RESET}")
+    print(f"{C.CYAN}[*] Menjalankan browser otomatis (Bypass Manual Mode + Visual)...{C.RESET}")
     
     async with async_playwright() as p:
-        # Menambahkan ignore_default_args 
+        
         browser = await p.chromium.launch(
-            headless=True,
+            headless=False,
             args=["--disable-blink-features=AutomationControlled"],
             ignore_default_args=["--enable-automation"]
         )
@@ -27,7 +27,7 @@ async def get_turnstile_token():
         )
         page = await context.new_page()
         
-        # JUBANG GAIB MANUAL: Sembunyikan status 'webdriver' dari deteksi Cloudflare
+        
         await page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
         print(f"{C.YELLOW}[*] Membuka {TARGET_URL}...{C.RESET}")
