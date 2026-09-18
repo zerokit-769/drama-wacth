@@ -1,6 +1,6 @@
 import asyncio
 from playwright.async_api import async_playwright
-from playwright_stealth import stealth_async  # Plugin penyamaran
+from playwright_stealth import stealth  
 
 TARGET_URL = "https://drama.center"
 SITEKEY = "0x4AAAAAAE5Imx2BMLN5ABSD"
@@ -16,7 +16,6 @@ async def get_turnstile_token():
     print(f"{C.CYAN}[*] Menjalankan browser otomatis (Mode Stealth)...{C.RESET}")
     
     async with async_playwright() as p:
-        # Tambahan argumen agar tidak terdeteksi sebagai robot automation
         browser = await p.chromium.launch(
             headless=True,
             args=["--disable-blink-features=AutomationControlled"]
@@ -27,8 +26,8 @@ async def get_turnstile_token():
         )
         page = await context.new_page()
         
-        # Menerapkan jubah gaib (stealth) ke halaman web
-        await stealth_async(page)
+        # Menggunakan stealth versi baru
+        await stealth(page)
 
         print(f"{C.YELLOW}[*] Membuka {TARGET_URL}...{C.RESET}")
         await page.goto(TARGET_URL, wait_until="domcontentloaded")
@@ -59,7 +58,6 @@ async def get_turnstile_token():
         print(f"{C.YELLOW}[*] Menunggu Cloudflare memproses challenge (Maks 20 detik)...{C.RESET}")
         
         token = None
-        # Tambah waktu tunggu jadi 20 detik karena stealth kadang butuh waktu
         for _ in range(20):
             await asyncio.sleep(1)
             try:
