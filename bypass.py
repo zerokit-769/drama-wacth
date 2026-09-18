@@ -1,6 +1,11 @@
 import asyncio
 from playwright.async_api import async_playwright
 
+# === KONFIGURASI PROXY (UBAH DI SINI) ===
+# Ganti dengan alamat proxy kamu, format: http://host:port
+PROXY_SERVER = "http://80.208.225.245:7001
+# =======================================
+
 TARGET_URL = "https://drama.center"
 SITEKEY = "0x4AAAAAAE5Imx2BMLN5ABSD"
 
@@ -12,12 +17,14 @@ class C:
     RESET = "\033[0m"
 
 async def get_turnstile_token():
-    print(f"{C.CYAN}[*] Menjalankan browser otomatis (Bypass Manual Mode + Visual)...{C.RESET}")
+    print(f"{C.CYAN}[*] Menjalankan browser otomatis (Visual Mode + Proxy)...{C.RESET}")
+    print(f"{C.YELLOW}[!] Menggunakan proxy: {PROXY_SERVER.split('@')[-1]}{C.RESET}")
     
     async with async_playwright() as p:
-        
+        # Konfigurasi browser agar berjalan visual dan menggunakan proxy
         browser = await p.chromium.launch(
             headless=False,
+            proxy={"server": PROXY_SERVER},
             args=["--disable-blink-features=AutomationControlled"],
             ignore_default_args=["--enable-automation"]
         )
@@ -27,11 +34,17 @@ async def get_turnstile_token():
         )
         page = await context.new_page()
         
-        
+        # JUBANG GAIB: Sembunyikan status 'webdriver'
         await page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
-        print(f"{C.YELLOW}[*] Membuka {TARGET_URL}...{C.RESET}")
-        await page.goto(TARGET_URL, wait_until="domcontentloaded")
+        print(f"{C.YELLOW}[*] Membuka {TARGET_URL} (Tunggu, mungkin lambat karena proxy)...{C.RESET}")
+        try:
+            # Tambahkan timeout agar tidak menunggu selamanya jika proxy mati
+            await page.goto(TARGET_URL, wait_until="domcontentloaded", timeout=60000)
+        except Exception as e:
+            print(f"{C.RED}[-] Gagal memuat halaman (Proxy mati/timeout): {e}{C.RESET}")
+            await browser.close()
+            return None
 
         print(f"{C.YELLOW}[*] Menyuntikkan Widget Turnstile...{C.RESET}")
         await page.evaluate(f"""
@@ -56,10 +69,10 @@ async def get_turnstile_token():
             }})();
         """)
 
-        print(f"{C.YELLOW}[*] Menunggu Cloudflare memproses challenge (Maks 20 detik)...{C.RESET}")
+        print(f"{C.YELLOW}[*] Menunggu Cloudflare memproses challenge (Maks 30 detik)...{C.RESET}")
         
         token = None
-        for _ in range(20):
+        for _ in range(30):
             await asyncio.sleep(1)
             try:
                 token = await page.evaluate("window._tok || null")
@@ -72,14 +85,20 @@ async def get_turnstile_token():
         return token
 
 async def main():
-    print(f"{C.GREEN}=== LOCAL TURNSTILE SOLVER ==={C.RESET}")
+    print(f"{C.GREEN}=== LOCAL TURNSTILE SOLVER with PROXY ==={C.RESET}")
+    
+    # Cek apakah konfigurasi proxy sudah diubah
+    if "host:port" in PROXY_SERVER:
+        print(f"\n{C.RED}[!] Silakan ubah variabel PROXY_SERVER di dalam file bypass.py dengan proxy milik Anda terlebih dahulu.{C.RESET}")
+        return
+
     token = await get_turnstile_token()
     
     if token:
         print(f"\n{C.GREEN}[+] SUKSES! Token Turnstile berhasil didapatkan:{C.RESET}\n")
         print(f"{token}")
     else:
-        print(f"\n{C.RED}[-] Gagal mendapatkan token. Cloudflare masih memblokir IP/Browser ini.{C.RESET}")
+        print(f"\n{C.RED}[-] Gagal mendapatkan token. Cloudflare masih memblokir IP/Browser atau proxy bermasalah.{C.RESET}")
 
 if __name__ == "__main__":
     asyncio.run(main())
