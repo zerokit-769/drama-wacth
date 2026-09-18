@@ -88,7 +88,7 @@ async function executeSignIn() {
     'sec-ch-ua-mobile': "?1",
     'x-client-info': "supabase-ssr/0.12.5 createBrowserClient",
     'content-type': "application/json;charset=UTF-8",
-    'apikey': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRhZ3hoaXB5bGtvYnlndXZpZWRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcyNjk5NDksImV4cCI6MjEwMjg0NTk0OX0.P6JmfYhruL3LZGEnfXbS85HE4ABerldH9zyHtWEo3vc",
+    'apikey': "idC8EtS.5ByCkR8u1Xk4dVjpimarQw.eS15gPfORC7Y-1789563500-1.2.1.1-V4LOn6d5VwwJlL9OwMiu3qxkFLuneAgzn9dYDYoqzvL94Y2bDuaLJ35Rhp2MNj4S4J_skMWT7oIevVNWONmcofWbja6AQG9VC4K3CuatDu4q4YhgTjwkdycU8bttPBOKdm_prw.Vlj7QRC5Fsg2oxaA59e3y6My1BcmdTtsGj_KMtfSAKnVbQwkOouuEnDc18qJkkJi0qtEWjFX00c00yRaVRSSyxx2ySADSf0s5Vd3oNHA0HSE70BBeget7rqapODjTuCZGFPuckAb0awnu.zaXBq6__LS22JKfn2W1oj9ToWJ5jhclceqgAw0JyU07k9f11JXtyQAjTwboMj_UyyRZDws22Z2ig0wxn523Prq0EhakzgsGjo5ViuYCnstgPKBTZik_S4exZVNf87J8z0k90w1Gn1PFP5SWU76zquNJmKV2f5PGK1uly5MYggazGuiEJ8A0qrmB3gxZbmaa2UkHJ_YYdjz4nFjRn0hY.ozSKF7tiy0PpAf3RFshI4YaAhNXu6qZ7HR2gm0bg",
     'origin': "https://drama.center",
     "x-forwarded-for": getRandomIp(),
     'sec-fetch-site': "cross-site",
