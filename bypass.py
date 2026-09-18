@@ -3,7 +3,7 @@ from playwright.async_api import async_playwright
 
 # === KONFIGURASI PROXY (UBAH DI SINI) ===
 # Ganti dengan alamat proxy kamu, format: http://host:port
-PROXY_SERVER = "http://206.135.56.50:8080"
+PROXY_SERVER = "https://103.145.176.162:8080"
 # =======================================
 
 TARGET_URL = "https://drama.center"
