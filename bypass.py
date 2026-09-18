@@ -1,6 +1,5 @@
 import asyncio
 from playwright.async_api import async_playwright
-from playwright_stealth import stealth  
 
 TARGET_URL = "https://drama.center"
 SITEKEY = "0x4AAAAAAE5Imx2BMLN5ABSD"
@@ -13,12 +12,14 @@ class C:
     RESET = "\033[0m"
 
 async def get_turnstile_token():
-    print(f"{C.CYAN}[*] Menjalankan browser otomatis (Mode Stealth)...{C.RESET}")
+    print(f"{C.CYAN}[*] Menjalankan browser otomatis (Bypass Manual Mode)...{C.RESET}")
     
     async with async_playwright() as p:
+        # Menambahkan ignore_default_args 
         browser = await p.chromium.launch(
             headless=True,
-            args=["--disable-blink-features=AutomationControlled"]
+            args=["--disable-blink-features=AutomationControlled"],
+            ignore_default_args=["--enable-automation"]
         )
         context = await browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
@@ -26,8 +27,8 @@ async def get_turnstile_token():
         )
         page = await context.new_page()
         
-        # Menggunakan stealth versi baru
-        await stealth(page)
+        # JUBANG GAIB MANUAL: Sembunyikan status 'webdriver' dari deteksi Cloudflare
+        await page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
         print(f"{C.YELLOW}[*] Membuka {TARGET_URL}...{C.RESET}")
         await page.goto(TARGET_URL, wait_until="domcontentloaded")
